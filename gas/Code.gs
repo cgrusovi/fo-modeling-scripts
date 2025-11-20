@@ -1,4 +1,5 @@
-// Initial Apps Script file for testing
+// Updated Apps Script file
 function testGateway() {
-  Logger.log("Hello from fo-modeling-scripts Code.gs");
+  Logger.log("Repo update test executed successfully.");
+  return 'Gateway updated';
 }
