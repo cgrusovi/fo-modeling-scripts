@@ -1,3 +1,4 @@
 function testGateway() {
-  Logger.log('Edited via FO gateway');
+  Logger.log('FO gateway second update test successful');
+  return 'Gateway OK';
 }
