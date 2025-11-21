@@ -16,7 +16,15 @@ function createOrEnsureTabs(requiredSheets) {
     }
   });
 
-  SpreadsheetApp.getActiveSpreadsheet().toast('Sheet orchestration complete. Check Audit tab for results.');
+  // Audit logging
+  const auditName = 'Audit';
+  let audit = ss.getSheetByName(auditName);
+  if (!audit) audit = ss.insertSheet(auditName);
+  const ts = new Date();
+  const row = [ts, JSON.stringify(results)];
+  audit.appendRow(row);
+
+  SpreadsheetApp.getActiveSpreadsheet().toast('✅ Sheet orchestration complete. See Audit tab for log.');
   return results;
 }
 
