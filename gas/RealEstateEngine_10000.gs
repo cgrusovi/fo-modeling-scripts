@@ -1,1 +1,0 @@
-/mnt/data/fe88cc08-2567-4a1f-8c02-c4c96dd7870b.png
