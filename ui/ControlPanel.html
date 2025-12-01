@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        font-family: 'Google Sans', Roboto, Arial, sans-serif;
+        padding: 16px;
+        background: #f9fafb;
+      }
+      h2 {
+        color: #202124;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      .section {
+        background: #fff;
+        border: 1px solid #dadce0;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+      }
+      button {
+        background: #1a73e8;
+        border: none;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+      }
+      button:hover { background: #185abc; }
+      .log {
+        font-size: 12px;
+        color: #5f6368;
+        margin-top: 12px;
+        white-space: pre-wrap;
+        background: #f1f3f4;
+        padding: 8px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Family Office Control Panel</h2>
+
+    <div class="section">
+      <h3>Operations</h3>
+      <button onclick="runMonthlyUpdate()">Run Monthly Update</button>
+      <button onclick="testConnection()" style="margin-left:8px;">Test Connection</button>
+    </div>
+
+    <div class="section">
+      <h3>Diagnostics Log</h3>
+      <div id="log" class="log">Awaiting user action...</div>
+    </div>
+
+    <script>
+      function runMonthlyUpdate() {
+        document.getElementById('log').textContent = 'Running monthly update...';
+        google.script.run.withSuccessHandler(() => {
+          document.getElementById('log').textContent = 'Monthly update completed successfully.';
+        }).withFailureHandler(err => {
+          document.getElementById('log').textContent = 'Error: ' + err.message;
+        }).runMonthlyUpdate();
+      }
+
+      function testConnection() {
+        document.getElementById('log').textContent = 'Testing connection...';
+        google.script.run.withSuccessHandler(() => {
+          document.getElementById('log').textContent = 'Connection test successful!';
+        }).withFailureHandler(err => {
+          document.getElementById('log').textContent = 'Connection test failed: ' + err.message;
+        }).testConnection();
+      }
+    </script>
+  </body>
+</html>
